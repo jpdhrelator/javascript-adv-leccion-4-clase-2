@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    
+    <ul id="log">
+        
+    </ul>
+
+
+    <script>
+        const ulLog= document.getElementById("log");
+
+        agregarLog= (msj)=>{
+            const li = document.createElement("li");
+            li.innerText= msj;
+            ulLog.append(li);
+        }
+
+        const prepararHamburguesa= new Promise((resolve, reject)=>{
+
+            agregarLog("Cocinando Pedido");
+            const hayIngrediente = (Math.random() > 0.5);   
+                    
+             setTimeout(() => {
+                if(hayIngrediente){                    
+                    resolve("🍔 Aquí tienes tu hamburguesa doble");
+                }else{
+                    reject("❌ Lo sentimos, no queda carne");
+                }
+             }, 1000);
+        });
+
+        prepararHamburguesa
+        .then((resultado)=>{
+            agregarLog(resultado);
+        })
+        .catch((error)=>{
+            agregarLog(error);
+        })
+        .finally(()=> agregarLog("Gracias por venir"));
+
+    </script>
+</body>
+</html>
